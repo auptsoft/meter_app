@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/time_load_nav_menu"
+        android:title="Home Energy Planner"
+        android:icon="@drawable/ic_hot_tub_black_24dp"/>
+    <item android:id="@+id/meter_nav_menu"
+        android:title="Meter"
+        android:icon="@drawable/ic_chrome_reader_mode_black_24dp"/>
+
+</menu>
