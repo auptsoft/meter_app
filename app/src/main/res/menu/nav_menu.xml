@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/time_load_nav_menu"
-        android:title="Home Energy Planner"
+        android:title="Load Manager"
         android:icon="@drawable/ic_hot_tub_black_24dp"/>
     <item android:id="@+id/meter_nav_menu"
         android:title="Meter"
         android:icon="@drawable/ic_chrome_reader_mode_black_24dp"/>
+    <item android:id="@+id/set_planer_time"
+        android:title="Set Planner Time"
+        android:icon="@drawable/ic_access_time_black_24dp"/>
 
 </menu>

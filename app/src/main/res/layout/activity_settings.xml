@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.app.auptsoft.homeenergyplanner.view_models.SettingsViewModel" />
+            type="com.app.auptsoft.meterutililty.view_models.SettingsViewModel" />
     </data>
 
     <ScrollView

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View" />
         <variable
-            name="meterViewModel"
-            type="com.app.auptsoft.homeenergyplanner.view_models.MeterViewModel" />
+            name="nMeterStatus"
+            type="com.app.auptsoft.meterutililty.model.MeterStatus" />
 
         <variable
             name="presenter"
-            type="com.app.auptsoft.homeenergyplanner.presenters.MeterFragmentPresenter" />
+            type="com.app.auptsoft.meterutililty.presenters.MeterFragmentPresenter" />
     </data>
 
     <LinearLayout
@@ -29,16 +28,17 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:textSize="35sp"
-                android:textStyle="bold"/>
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_margin="20dp"
-                android:backgroundTint="#22cccc"
-                android:tint="#fff"
-                android:src="@drawable/ic_bluetooth_black_24dp"/>
+                android:textStyle="bold"
+                android:visibility="gone"/>
+            <!--<android.support.design.widget.FloatingActionButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_margin="20dp"-->
+                <!--android:backgroundTint="#22cccc"-->
+                <!--android:tint="#fff"-->
+                <!--android:src="@drawable/ic_bluetooth_black_24dp"/>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -51,313 +51,101 @@
                     android:layout_marginBottom="20dp"
                     android:visibility="@{presenter.loading ? View.VISIBLE : View.GONE}"
                     />
-                <Button
-                    android:layout_width="wrap_content"
+
+                <com.github.florent37.shapeofview.shapes.RoundRectView
+                    android:id="@+id/status_action"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@android:style/Widget.Material.Button.Colored"
-                    android:text="REQUEST STATUS"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    app:shape_roundRect_topLeftRadius="30dp"
+                    app:shape_roundRect_topRightRadius="30dp"
+                    app:shape_roundRect_bottomRightRadius="30dp"
+                    app:shape_roundRect_bottomLeftRadius="30dp"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:background="#ccc">
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="3"
+                            android:tint="@color/colorAccent"
+                            android:src="@drawable/ic_assessment_black_24dp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="7"
+                            android:paddingLeft="20dp"
+                            android:textSize="25sp"
+                            android:text="Check Status"/>
+                    </LinearLayout>
+                </com.github.florent37.shapeofview.shapes.RoundRectView>
+                <com.github.florent37.shapeofview.shapes.RoundRectView
+                    android:id="@+id/recharge_action"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@android:style/Widget.Material.Button.Borderless.Colored"
-                    android:text="RECHARGE"
-                    android:layout_marginTop="10dp"
-                    />
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
+                    android:elevation="0dp"
+                    android:visibility="gone"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:background="#ccc">
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="3"
+                            android:tint="@color/colorAccent"
+                            android:src="@drawable/ic_euro_symbol_black_24dp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="7"
+                            android:paddingLeft="20dp"
+                            android:textSize="25sp"
+                            android:text="Recharge"/>
+                    </LinearLayout>
+                </com.github.florent37.shapeofview.shapes.RoundRectView>
+                <com.github.florent37.shapeofview.shapes.RoundRectView
+                    android:id="@+id/change_phase_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
+                    app:shape_roundRect_bottomLeftRadius="30dp"
+                    app:shape_roundRect_bottomRightRadius="30dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:background="#ccc"
+                        android:visibility="gone">
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="3"
+                            android:tint="@color/colorAccent"
+                            android:src="@drawable/ic_dns_black_24dp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="7"
+                            android:paddingLeft="20dp"
+                            android:textSize="25sp"
+                            android:text="Change Phase"/>
+                    </LinearLayout>
+                </com.github.florent37.shapeofview.shapes.RoundRectView>
+
             </LinearLayout>
+
         </RelativeLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:visibility="visible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:paddingBottom="10dp">
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:textAlignment="center"
-                                android:layout_height="wrap_content"
-                                android:textColor="#dd4499"
-                                android:text="@{meterViewModel.meterModel.reason}"/>
-                        </android.support.v7.widget.CardView>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_marginBottom="20dp"
-                            android:text="Meter Details"
-                            android:textAlignment="center"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="25sp" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="@{meterViewModel.meterModel.powerConsumption}"
-                                android:textSize="35sp" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="10dp"
-
-                                android:text="Power consumption" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="@{meterViewModel.meterModel.availableAmount}"
-                                android:textSize="35sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="10dp"
-
-                                android:text="Available Unit:" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textSize="18sp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="@={meterViewModel.meterModel.meterState}"
-                                android:textSize="35sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="10dp"
-
-                                android:text="Meter State" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textSize="18sp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center">
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="@{meterViewModel.meterModel.redPhaseActive}"
-                                        android:textSize="35sp" />
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="5dp"
-                                        android:layout_marginLeft="10dp"
-                                        android:textColor="#dd0000"
-                                        android:text="Red Phase" />
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="@{meterViewModel.meterModel.bluePhaseActive}"
-                                        android:textSize="35sp" />
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="5dp"
-                                        android:layout_marginLeft="10dp"
-                                        android:textColor="#0000dd"
-                                        android:text="Red Phase" />
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="@{meterViewModel.meterModel.yellowPhaseActive}"
-                                        android:textSize="35sp" />
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="5dp"
-                                        android:layout_marginLeft="10dp"
-                                        android:textColor="#dddd00"
-                                        android:text="Red Phase" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textSize="18sp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="@{meterViewModel.meterModel.currentPhase}"
-                                android:textSize="35sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="10dp"
-
-                                android:text="Current Phase" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textSize="18sp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="@{meterViewModel.meterModel.capacity}"
-                                android:textSize="35sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="10dp"
-
-                                android:text="Maximum Capacity" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textSize="18sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <!--<android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginTop="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Recharge Meter"
-                            android:textAlignment="center"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="25sp" />
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Recharge Pin"
-                                android:text="@={meter.rechargePin}" />
-                        </android.support.design.widget.TextInputLayout>
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{()->meter.recharge(meter.rechargePin)}"
-                            android:text="Send" />
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView> -->
-            </LinearLayout>
-        </ScrollView>
 
     </LinearLayout>
 </layout>

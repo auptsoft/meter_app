@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="presenter"
+            type="com.app.auptsoft.meterutililty.presenters.LoadFragmentPresenter" />
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:elevation="20dp"
+            android:background="#aa000000"
+            android:orientation="vertical"
+            android:visibility="@{presenter.loading ? View.VISIBLE : View.GONE}">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:text="LOADING... PLEASE WAIT"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="15dp">
+                <TextView
+                    android:id="@+id/load_name_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fan"
+                    android:textAlignment="center"
+                    android:textSize="34sp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:elevation="20dp"
+                    />
+            </android.support.v7.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:animateLayoutChanges="true">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:visibility="@{presenter.load.on? View.VISIBLE : View.GONE}"
+                        android:src="@drawable/ic_done_black_24dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{presenter.load.on? View.VISIBLE : View.GONE}"
+                        android:text="Load is on"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:visibility="@{!presenter.load.on? View.VISIBLE : View.GONE}"
+                        android:src="@drawable/ic_cancel_black_24dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{!presenter.load.on? View.VISIBLE : View.GONE}"
+                        android:text="Load is off"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="START TIME"
+
+                        android:textStyle="bold"
+                        android:layout_marginLeft="25dp"
+                        android:textColor="@color/colorAccent"/>
+
+                    <com.github.florent37.shapeofview.shapes.RoundRectView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        app:shape_roundRect_bottomRightRadius="20dp"
+                        app:shape_roundRect_bottomLeftRadius="20dp"
+                        app:shape_roundRect_topRightRadius="20dp"
+                        app:shape_roundRect_topLeftRadius="20dp"
+                       >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="10dp"
+                            android:background="@color/colorPrimary"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="7"
+                                android:textSize="24sp"
+                                android:textStyle="normal"
+                                android:textColor="#fff"
+                                android:text="@{presenter.startTime}" />
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:text="CHANGE"
+                                android:enabled="@{presenter.load.useTiming}"
+                                android:clickable="@{presenter.load.useTiming}"
+                                android:onClick="@{()->presenter.changeStartTime()}"/>
+                        </LinearLayout>
+                    </com.github.florent37.shapeofview.shapes.RoundRectView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="STOP TIME"
+
+                        android:textStyle="bold"
+                        android:layout_marginRight="35dp"
+                        android:textAlignment="viewEnd"
+                        android:layout_gravity="end"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginTop="20dp"/>
+
+                    <com.github.florent37.shapeofview.shapes.RoundRectView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        app:shape_roundRect_bottomRightRadius="20dp"
+                        app:shape_roundRect_bottomLeftRadius="20dp"
+                        app:shape_roundRect_topRightRadius="20dp"
+                        app:shape_roundRect_topLeftRadius="20dp"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="10dp"
+                            android:background="@color/colorAccent"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="7"
+                                android:textSize="24sp"
+                                android:textStyle="normal"
+                                android:textColor="#fff"
+                                android:text="@{presenter.endTime}" />
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:text="CHANGE"
+                                android:enabled="@{presenter.load.useTiming}"
+                                android:clickable="@{presenter.load.useTiming}"
+                                android:onClick="@{()->presenter.changeStopTime()}"/>
+                        </LinearLayout>
+                    </com.github.florent37.shapeofview.shapes.RoundRectView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text="@{presenter.durationStatus}"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{presenter.load.useTiming ? View.GONE : View.VISIBLE}"
+                            android:text="USE TIMER"
+                            android:onClick="@{()->presenter.useTiming()}"/>
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{!presenter.load.useTiming ? View.GONE : View.VISIBLE}"
+                            android:text="OVERRIDE TIMER"
+                            android:onClick="@{()->presenter.overideTiming()}"/>
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="TURN ON"
+                            android:visibility="@{ presenter.onVisible() ? View.VISIBLE : View.GONE}"
+                            android:onClick="@{()->presenter.setOn()}"/>
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="TURN OFF"
+                            android:visibility="@{ presenter.offVisible() ? View.VISIBLE : View.GONE}"
+                            android:onClick="@{()->presenter.setOff()}"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/current_values_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_restore_black_24dp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+</layout>
